@@ -11,6 +11,7 @@
 
 #import <AppKit/AppKit.h>
 #import <mach/mach_time.h>
+#include <CoreImage/CoreImage.h>
 #include <CoreMediaIO/CMIOSampleBuffer.h>
 
 #import "Logging.h"
@@ -144,16 +145,16 @@
     double time = double(mach_absolute_time()) / NSEC_PER_SEC;
     CGFloat pos = CGFloat(time - floor(time));
 
-    CGColorRef whiteColor = CGColorCreateGenericRGB(1, 1, 1, 1);
     CGColorRef redColor = CGColorCreateGenericRGB(1, 0, 0, 1);
-
-    CGContextSetFillColorWithColor(context, whiteColor);
-    CGContextFillRect(context, CGRectMake(0, 0, width, height));
+    
+    [[CIContext contextWithCGContext:context options:NULL]
+         render:[[CIImage alloc] initWithCGImage:image]
+         toCVPixelBuffer:pxbuffer
+    ];
 
     CGContextSetFillColorWithColor(context, redColor);
     CGContextFillRect(context, CGRectMake(pos * width, 310, 100, 100));
 
-    CGColorRelease(whiteColor);
     CGColorRelease(redColor);
 
     CGColorSpaceRelease(rgbColorSpace);
