@@ -13,6 +13,7 @@
 #import <mach/mach_time.h>
 #include <CoreImage/CoreImage.h>
 #include <CoreMediaIO/CMIOSampleBuffer.h>
+#include <Metal/Metal.h>
 
 #import "Logging.h"
 
@@ -22,6 +23,7 @@
     NSImage *_testImage;
     dispatch_source_t _frameDispatchSource;
     uint64_t _firstFrameDeliveryTime;
+    CGImageRef image;
 }
 
 @property CMIODeviceStreamQueueAlteredProc alteredProc;
@@ -53,6 +55,7 @@
             [wself fillFrame];
         });
     }
+    image = [self loadImageFile:@"/Users/alivanz/monad/coremediaio-dal-minimal-example/CMIOMinimalSample/data/bg.jpg"];
     return self;
 }
 
@@ -64,6 +67,7 @@
     CFRelease(_queue);
     _queue = NULL;
     dispatch_suspend(_frameDispatchSource);
+    CGImageRelease(image);
 }
 
 - (void)startServingFrames {
@@ -122,7 +126,6 @@
 }
 
 - (CVPixelBufferRef)createPixelBufferWithTestAnimation {
-    CGImageRef image = [self loadImageFile:@"/Users/alivanz/monad/coremediaio-dal-minimal-example/CMIOMinimalSample/data/bg.jpg"];
     size_t width = CGImageGetWidth(image);
     size_t height = CGImageGetHeight(image);
 
@@ -146,8 +149,8 @@
     CGFloat pos = CGFloat(time - floor(time));
 
     CGColorRef redColor = CGColorCreateGenericRGB(1, 0, 0, 1);
-    
-    [[CIContext contextWithCGContext:context options:NULL]
+
+    [[CIContext contextWithMTLDevice:MTLCreateSystemDefaultDevice()]
          render:[[CIImage alloc] initWithCGImage:image]
          toCVPixelBuffer:pxbuffer
     ];
@@ -161,8 +164,6 @@
     CGContextRelease(context);
 
     CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
-
-    CGImageRelease(image);
 
     return pxbuffer;
 }
