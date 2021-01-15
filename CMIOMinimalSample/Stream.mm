@@ -113,9 +113,17 @@
     return self.queue;
 }
 
+- (CGImageRef) loadImageFile:(NSString*)filename {
+  CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData((CFDataRef)[NSData dataWithContentsOfFile:filename]);
+  CGImageRef image = CGImageCreateWithJPEGDataProvider(imgDataProvider, NULL, true, kCGRenderingIntentDefault);
+  CGDataProviderRelease(imgDataProvider);
+  return image;
+}
+
 - (CVPixelBufferRef)createPixelBufferWithTestAnimation {
-    int width = 1280;
-    int height = 720;
+    CGImageRef image = [self loadImageFile:@"/Users/alivanz/monad/coremediaio-dal-minimal-example/CMIOMinimalSample/data/bg.jpg"];
+    size_t width = CGImageGetWidth(image);
+    size_t height = CGImageGetHeight(image);
 
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
@@ -152,6 +160,8 @@
     CGContextRelease(context);
 
     CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
+
+    CGImageRelease(image);
 
     return pxbuffer;
 }
