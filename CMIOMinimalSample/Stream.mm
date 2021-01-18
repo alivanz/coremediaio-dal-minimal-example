@@ -11,7 +11,9 @@
 
 #import <AppKit/AppKit.h>
 #import <mach/mach_time.h>
+#include <CoreImage/CoreImage.h>
 #include <CoreMediaIO/CMIOSampleBuffer.h>
+#include <Metal/Metal.h>
 
 #import "Logging.h"
 
@@ -21,6 +23,7 @@
     NSImage *_testImage;
     dispatch_source_t _frameDispatchSource;
     uint64_t _firstFrameDeliveryTime;
+    CGImageRef image;
 }
 
 @property CMIODeviceStreamQueueAlteredProc alteredProc;
@@ -52,6 +55,7 @@
             [wself fillFrame];
         });
     }
+    image = [self loadImageFile:@"/Library/CoreMediaIO/Plug-Ins/DAL/CMIOMinimalSample.plugin/Contents/Resources/bg.jpg"];
     return self;
 }
 
@@ -63,6 +67,7 @@
     CFRelease(_queue);
     _queue = NULL;
     dispatch_suspend(_frameDispatchSource);
+    CGImageRelease(image);
 }
 
 - (void)startServingFrames {
@@ -113,9 +118,16 @@
     return self.queue;
 }
 
+- (CGImageRef) loadImageFile:(NSString*)filename {
+  CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData((CFDataRef)[NSData dataWithContentsOfFile:filename]);
+  CGImageRef image = CGImageCreateWithJPEGDataProvider(imgDataProvider, NULL, true, kCGRenderingIntentDefault);
+  CGDataProviderRelease(imgDataProvider);
+  return image;
+}
+
 - (CVPixelBufferRef)createPixelBufferWithTestAnimation {
-    int width = 1280;
-    int height = 720;
+    size_t width = CGImageGetWidth(image);
+    size_t height = CGImageGetHeight(image);
 
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
@@ -136,16 +148,16 @@
     double time = double(mach_absolute_time()) / NSEC_PER_SEC;
     CGFloat pos = CGFloat(time - floor(time));
 
-    CGColorRef whiteColor = CGColorCreateGenericRGB(1, 1, 1, 1);
     CGColorRef redColor = CGColorCreateGenericRGB(1, 0, 0, 1);
 
-    CGContextSetFillColorWithColor(context, whiteColor);
-    CGContextFillRect(context, CGRectMake(0, 0, width, height));
+    [[CIContext contextWithMTLDevice:MTLCreateSystemDefaultDevice()]
+         render:[[CIImage alloc] initWithCGImage:image]
+         toCVPixelBuffer:pxbuffer
+    ];
 
     CGContextSetFillColorWithColor(context, redColor);
     CGContextFillRect(context, CGRectMake(pos * width, 310, 100, 100));
 
-    CGColorRelease(whiteColor);
     CGColorRelease(redColor);
 
     CGColorSpaceRelease(rgbColorSpace);
