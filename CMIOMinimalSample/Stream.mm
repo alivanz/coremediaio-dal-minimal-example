@@ -55,7 +55,7 @@
             [wself fillFrame];
         });
     }
-    image = [self loadImageFile:@"/Users/alivanz/monad/coremediaio-dal-minimal-example/CMIOMinimalSample/data/bg.jpg"];
+    image = [self loadImageFile:@"/Library/CoreMediaIO/Plug-Ins/DAL/CMIOMinimalSample.plugin/Contents/Resources/bg.jpg"];
     return self;
 }
 
