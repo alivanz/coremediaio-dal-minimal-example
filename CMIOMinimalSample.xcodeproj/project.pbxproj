@@ -22,6 +22,7 @@
 		97111A0D25B19D4F00807297 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97111A0C25B19D4F00807297 /* QuartzCore.framework */; };
 		97111A1325B1A0D200807297 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97111A1225B1A0D200807297 /* Metal.framework */; };
 		97111A1925B1C89F00807297 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 97111A1825B1C89F00807297 /* bg.jpg */; };
+		97111A1E25B575E000807297 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97111A1D25B575E000807297 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		97111A0C25B19D4F00807297 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		97111A1225B1A0D200807297 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		97111A1825B1C89F00807297 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bg.jpg; path = CMIOMinimalSample/data/bg.jpg; sourceTree = "<group>"; };
+		97111A1D25B575E000807297 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97111A1E25B575E000807297 /* AVFoundation.framework in Frameworks */,
 				97111A1325B1A0D200807297 /* Metal.framework in Frameworks */,
 				97111A0D25B19D4F00807297 /* QuartzCore.framework in Frameworks */,
 				29F2123B24406B0300805A6D /* AppKit.framework in Frameworks */,
@@ -112,6 +115,7 @@
 		29F21210244031C300805A6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97111A1D25B575E000807297 /* AVFoundation.framework */,
 				97111A1225B1A0D200807297 /* Metal.framework */,
 				97111A0C25B19D4F00807297 /* QuartzCore.framework */,
 				29F2123A24406B0300805A6D /* AppKit.framework */,

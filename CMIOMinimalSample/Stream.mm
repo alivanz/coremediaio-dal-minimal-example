@@ -11,6 +11,7 @@
 
 #import <AppKit/AppKit.h>
 #import <mach/mach_time.h>
+#include <AVFoundation/AVFoundation.h>
 #include <CoreImage/CoreImage.h>
 #include <CoreMediaIO/CMIOSampleBuffer.h>
 #include <Metal/Metal.h>
@@ -24,6 +25,10 @@
     dispatch_source_t _frameDispatchSource;
     uint64_t _firstFrameDeliveryTime;
     CGImageRef image;
+    AVCaptureSession *session;
+    AVCaptureDevice *device;
+    AVCaptureDeviceInput *deviceInput;
+    AVCaptureVideoDataOutput *videoOut;
 }
 
 @property CMIODeviceStreamQueueAlteredProc alteredProc;
@@ -56,6 +61,30 @@
         });
     }
     image = [self loadImageFile:@"/Library/CoreMediaIO/Plug-Ins/DAL/CMIOMinimalSample.plugin/Contents/Resources/bg.jpg"];
+    // setup permission
+    DLogFunc(@"setup permission");
+    NSParameterAssert([self setupPermission:AVMediaTypeVideo] == true);
+    // setup video capture
+    DLogFunc(@"setup video capture");
+    session = [[AVCaptureSession alloc] init];
+    // get capture device
+    DLogFunc(@"get capture device");
+    device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    NSParameterAssert(device != NULL);
+    // add video input
+    DLogFunc(@"add video input");
+    NSError *error;
+    deviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
+    NSParameterAssert(error == NULL);
+    [session addInput:deviceInput];
+    // add video output
+    DLogFunc(@"add video output");
+    videoOut = [[AVCaptureVideoDataOutput alloc] init];
+    [session addOutput:videoOut];
+    [videoOut setAlwaysDiscardsLateVideoFrames:true];
+    // start capture
+    DLogFunc(@"start capture");
+    [session startRunning];
     return self;
 }
 
@@ -68,6 +97,26 @@
     _queue = NULL;
     dispatch_suspend(_frameDispatchSource);
     CGImageRelease(image);
+    // stop capture
+    DLogFunc(@"stop capture");
+    [session stopRunning];
+}
+
+- (bool)setupPermission:(AVMediaType)type {
+    if ([self checkPermission:type]) {
+        return true;
+    }
+    [AVCaptureDevice requestAccessForMediaType:type completionHandler:^(BOOL granted) {
+        if(granted){
+            NSLog(@"Granted access to %@", type);
+        } else {
+            NSLog(@"Not granted access to %@", type);
+        }
+    }];
+    return [self checkPermission:type];
+}
+- (bool)checkPermission:(AVMediaType)type {
+    return [AVCaptureDevice authorizationStatusForMediaType:type] == AVAuthorizationStatusAuthorized;
 }
 
 - (void)startServingFrames {
