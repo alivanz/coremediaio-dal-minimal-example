@@ -326,7 +326,7 @@
 				DEVELOPMENT_TEAM = 62G85M9ZN5;
 				INFOPLIST_FILE = CMIOMinimalSample/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnboiles.CMIOMinimalSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luminacam.CMIOMinimalSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = plugin;
@@ -342,7 +342,7 @@
 				DEVELOPMENT_TEAM = 62G85M9ZN5;
 				INFOPLIST_FILE = CMIOMinimalSample/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnboiles.CMIOMinimalSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luminacam.CMIOMinimalSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = plugin;

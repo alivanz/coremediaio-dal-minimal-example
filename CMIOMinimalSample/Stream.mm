@@ -25,10 +25,10 @@
     dispatch_source_t _frameDispatchSource;
     uint64_t _firstFrameDeliveryTime;
     CGImageRef image;
-    AVCaptureSession *session;
-    AVCaptureDevice *device;
-    AVCaptureDeviceInput *deviceInput;
-    AVCaptureVideoDataOutput *videoOut;
+//    AVCaptureSession *session;
+//    AVCaptureDevice *device;
+//    AVCaptureDeviceInput *deviceInput;
+//    AVCaptureVideoDataOutput *videoOut;
 }
 
 @property CMIODeviceStreamQueueAlteredProc alteredProc;
@@ -38,6 +38,10 @@
 @property UInt64 sequenceNumber;
 @property (readonly) NSImage *testImage;
 
+@end
+
+@protocol ImageProvider
+- (void) hello;
 @end
 
 @implementation Stream
@@ -61,30 +65,45 @@
         });
     }
     image = [self loadImageFile:@"/Library/CoreMediaIO/Plug-Ins/DAL/CMIOMinimalSample.plugin/Contents/Resources/bg.jpg"];
-    // setup permission
-    DLogFunc(@"setup permission");
-    NSParameterAssert([self setupPermission:AVMediaTypeVideo] == true);
-    // setup video capture
-    DLogFunc(@"setup video capture");
-    session = [[AVCaptureSession alloc] init];
-    // get capture device
-    DLogFunc(@"get capture device");
-    device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    NSParameterAssert(device != NULL);
-    // add video input
-    DLogFunc(@"add video input");
-    NSError *error;
-    deviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
-    NSParameterAssert(error == NULL);
-    [session addInput:deviceInput];
-    // add video output
-    DLogFunc(@"add video output");
-    videoOut = [[AVCaptureVideoDataOutput alloc] init];
-    [session addOutput:videoOut];
-    [videoOut setAlwaysDiscardsLateVideoFrames:true];
-    // start capture
-    DLogFunc(@"start capture");
-    [session startRunning];
+    // connect xpc
+    NSXPCConnection *conn = [[NSXPCConnection alloc] initWithServiceName:@"lumina"];
+    conn.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ImageProvider)];
+    [conn resume];
+    // try dial
+    [conn.remoteObjectProxy hello];
+//    // setup permission
+//    DLogFunc(@"setup permission");
+//    NSParameterAssert([self setupPermission:AVMediaTypeVideo] == true);
+//    // setup video capture
+//    DLogFunc(@"setup video capture");
+//    session = [[AVCaptureSession alloc] init];
+//    // get capture device
+//    DLogFunc(@"get capture device");
+//    AVCaptureDeviceDiscoverySession *devices = [AVCaptureDeviceDiscoverySession
+//        discoverySessionWithDeviceTypes: @[
+//            AVCaptureDeviceTypeBuiltInWideAngleCamera
+//        ]
+//        mediaType:AVMediaTypeVideo
+//        position:AVCaptureDevicePositionUnspecified
+//    ];
+//    DLogFunc(@"@%lu devices detected", (unsigned long)devices.devices.count);
+//    // device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+//    device = devices.devices[0];
+//    NSParameterAssert(device != NULL);
+//    // add video input
+//    DLogFunc(@"add video input");
+//    NSError *error;
+//    deviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
+//    NSParameterAssert(error == NULL);
+//    [session addInput:deviceInput];
+//    // add video output
+//    DLogFunc(@"add video output");
+//    videoOut = [[AVCaptureVideoDataOutput alloc] init];
+//    [session addOutput:videoOut];
+//    [videoOut setAlwaysDiscardsLateVideoFrames:true];
+//    // start capture
+//    DLogFunc(@"start capture");
+//    [session startRunning];
     return self;
 }
 
@@ -98,8 +117,8 @@
     dispatch_suspend(_frameDispatchSource);
     CGImageRelease(image);
     // stop capture
-    DLogFunc(@"stop capture");
-    [session stopRunning];
+//    DLogFunc(@"stop capture");
+//    [session stopRunning];
 }
 
 - (bool)setupPermission:(AVMediaType)type {

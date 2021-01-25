@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>This app request access to your camera, pls</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -20,8 +18,6 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2020 John Boiles . All rights reserved.</string>
 	<key>CFPlugInFactories</key>
 	<dict>
 		<key>8457B77A-D0304458-B136-8BB5335F4512 </key>
@@ -34,5 +30,9 @@
 			<string>8457B77A-D0304458-B136-8BB5335F4512 </string>
 		</array>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>This app request access to your camera, pls</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2020 John Boiles . All rights reserved.</string>
 </dict>
 </plist>
