@@ -23,7 +23,22 @@
 		97111A1325B1A0D200807297 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97111A1225B1A0D200807297 /* Metal.framework */; };
 		97111A1925B1C89F00807297 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 97111A1825B1C89F00807297 /* bg.jpg */; };
 		97111A1E25B575E000807297 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97111A1D25B575E000807297 /* AVFoundation.framework */; };
+		9761822A25BEBF7E00A575B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9761822925BEBF7E00A575B2 /* main.m */; };
+		9761823725BEC2CC00A575B2 /* assistance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9761823625BEC2CC00A575B2 /* assistance.m */; };
+		9761824025BEC43B00A575B2 /* LuminaAssistance in Resources */ = {isa = PBXBuildFile; fileRef = 9761822725BEBF7E00A575B2 /* LuminaAssistance */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9761822525BEBF7E00A575B2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2930F4DC2441626200403930 /* Device.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
@@ -51,6 +66,11 @@
 		97111A1225B1A0D200807297 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		97111A1825B1C89F00807297 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bg.jpg; path = CMIOMinimalSample/data/bg.jpg; sourceTree = "<group>"; };
 		97111A1D25B575E000807297 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9761822725BEBF7E00A575B2 /* LuminaAssistance */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LuminaAssistance; sourceTree = BUILT_PRODUCTS_DIR; };
+		9761822925BEBF7E00A575B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9761823025BEC22500A575B2 /* protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = protocol.h; sourceTree = "<group>"; };
+		9761823325BEC25500A575B2 /* assistance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = assistance.h; sourceTree = "<group>"; };
+		9761823625BEC2CC00A575B2 /* assistance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = assistance.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +90,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9761822425BEBF7E00A575B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +105,7 @@
 			children = (
 				97111A1825B1C89F00807297 /* bg.jpg */,
 				29F2120624402B9300805A6D /* CMIOMinimalSample */,
+				9761822825BEBF7E00A575B2 /* LuminaAssistance */,
 				29F2120524402B9300805A6D /* Products */,
 				29F21210244031C300805A6D /* Frameworks */,
 			);
@@ -87,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				29F2120424402B9300805A6D /* CMIOMinimalSample.plugin */,
+				9761822725BEBF7E00A575B2 /* LuminaAssistance */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,6 +157,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9761822825BEBF7E00A575B2 /* LuminaAssistance */ = {
+			isa = PBXGroup;
+			children = (
+				9761822925BEBF7E00A575B2 /* main.m */,
+				9761823325BEC25500A575B2 /* assistance.h */,
+				9761823025BEC22500A575B2 /* protocol.h */,
+				9761823625BEC2CC00A575B2 /* assistance.m */,
+			);
+			path = LuminaAssistance;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -148,6 +188,23 @@
 			productReference = 29F2120424402B9300805A6D /* CMIOMinimalSample.plugin */;
 			productType = "com.apple.product-type.bundle";
 		};
+		9761822625BEBF7E00A575B2 /* LuminaAssistance */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9761822B25BEBF7E00A575B2 /* Build configuration list for PBXNativeTarget "LuminaAssistance" */;
+			buildPhases = (
+				9761822325BEBF7E00A575B2 /* Sources */,
+				9761822425BEBF7E00A575B2 /* Frameworks */,
+				9761822525BEBF7E00A575B2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LuminaAssistance;
+			productName = LuminaAssistance;
+			productReference = 9761822725BEBF7E00A575B2 /* LuminaAssistance */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -159,6 +216,9 @@
 				TargetAttributes = {
 					29F2120324402B9300805A6D = {
 						CreatedOnToolsVersion = 11.4;
+					};
+					9761822625BEBF7E00A575B2 = {
+						CreatedOnToolsVersion = 12.3;
 					};
 				};
 			};
@@ -176,6 +236,7 @@
 			projectRoot = "";
 			targets = (
 				29F2120324402B9300805A6D /* CMIOMinimalSample */,
+				9761822625BEBF7E00A575B2 /* LuminaAssistance */,
 			);
 		};
 /* End PBXProject section */
@@ -185,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9761824025BEC43B00A575B2 /* LuminaAssistance in Resources */,
 				97111A1925B1C89F00807297 /* bg.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +264,15 @@
 				2930F4DE2441626200403930 /* Device.mm in Sources */,
 				2930F4E124417F7E00403930 /* ObjectStore.mm in Sources */,
 				2930F4E4244182FD00403930 /* Stream.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9761822325BEBF7E00A575B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9761822A25BEBF7E00A575B2 /* main.m in Sources */,
+				9761823725BEC2CC00A575B2 /* assistance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +394,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 62G85M9ZN5;
+				DEVELOPMENT_TEAM = M2GGXLNTN5;
 				INFOPLIST_FILE = CMIOMinimalSample/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luminacam.CMIOMinimalSample;
@@ -339,13 +410,41 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 62G85M9ZN5;
+				DEVELOPMENT_TEAM = M2GGXLNTN5;
 				INFOPLIST_FILE = CMIOMinimalSample/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luminacam.CMIOMinimalSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = plugin;
+			};
+			name = Release;
+		};
+		9761822C25BEBF7E00A575B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M2GGXLNTN5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luminacam.LuminaAssistance;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9761822D25BEBF7E00A575B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M2GGXLNTN5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luminacam.LuminaAssistance;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -366,6 +465,15 @@
 			buildConfigurations = (
 				29F2120B24402B9300805A6D /* Debug */,
 				29F2120C24402B9300805A6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9761822B25BEBF7E00A575B2 /* Build configuration list for PBXNativeTarget "LuminaAssistance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9761822C25BEBF7E00A575B2 /* Debug */,
+				9761822D25BEBF7E00A575B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
