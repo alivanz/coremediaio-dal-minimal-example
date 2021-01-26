@@ -26,10 +26,30 @@
 		9761822A25BEBF7E00A575B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9761822925BEBF7E00A575B2 /* main.m */; };
 		9761823725BEC2CC00A575B2 /* assistance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9761823625BEC2CC00A575B2 /* assistance.m */; };
 		9761824025BEC43B00A575B2 /* LuminaAssistance in Resources */ = {isa = PBXBuildFile; fileRef = 9761822725BEBF7E00A575B2 /* LuminaAssistance */; };
+		9761824A25BECC5C00A575B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9761824925BECC5C00A575B2 /* main.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9761825E25BEFC5A00A575B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29F211FC24402B9300805A6D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9761822625BEBF7E00A575B2;
+			remoteInfo = LuminaAssistance;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		9761822525BEBF7E00A575B2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		9761824525BECC5C00A575B2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -71,6 +91,8 @@
 		9761823025BEC22500A575B2 /* protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = protocol.h; sourceTree = "<group>"; };
 		9761823325BEC25500A575B2 /* assistance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = assistance.h; sourceTree = "<group>"; };
 		9761823625BEC2CC00A575B2 /* assistance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = assistance.m; sourceTree = "<group>"; };
+		9761824725BECC5C00A575B2 /* lumina-control */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "lumina-control"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9761824925BECC5C00A575B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +119,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9761824425BECC5C00A575B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -106,6 +135,7 @@
 				97111A1825B1C89F00807297 /* bg.jpg */,
 				29F2120624402B9300805A6D /* CMIOMinimalSample */,
 				9761822825BEBF7E00A575B2 /* LuminaAssistance */,
+				9761824825BECC5C00A575B2 /* lumina-control */,
 				29F2120524402B9300805A6D /* Products */,
 				29F21210244031C300805A6D /* Frameworks */,
 			);
@@ -116,6 +146,7 @@
 			children = (
 				29F2120424402B9300805A6D /* CMIOMinimalSample.plugin */,
 				9761822725BEBF7E00A575B2 /* LuminaAssistance */,
+				9761824725BECC5C00A575B2 /* lumina-control */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +199,14 @@
 			path = LuminaAssistance;
 			sourceTree = "<group>";
 		};
+		9761824825BECC5C00A575B2 /* lumina-control */ = {
+			isa = PBXGroup;
+			children = (
+				9761824925BECC5C00A575B2 /* main.m */,
+			);
+			path = "lumina-control";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -182,6 +221,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9761825F25BEFC5A00A575B2 /* PBXTargetDependency */,
 			);
 			name = CMIOMinimalSample;
 			productName = CMIOMinimalSample;
@@ -205,6 +245,23 @@
 			productReference = 9761822725BEBF7E00A575B2 /* LuminaAssistance */;
 			productType = "com.apple.product-type.tool";
 		};
+		9761824625BECC5C00A575B2 /* lumina-control */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9761824B25BECC5C00A575B2 /* Build configuration list for PBXNativeTarget "lumina-control" */;
+			buildPhases = (
+				9761824325BECC5C00A575B2 /* Sources */,
+				9761824425BECC5C00A575B2 /* Frameworks */,
+				9761824525BECC5C00A575B2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "lumina-control";
+			productName = "lumina-control";
+			productReference = 9761824725BECC5C00A575B2 /* lumina-control */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,6 +275,9 @@
 						CreatedOnToolsVersion = 11.4;
 					};
 					9761822625BEBF7E00A575B2 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					9761824625BECC5C00A575B2 = {
 						CreatedOnToolsVersion = 12.3;
 					};
 				};
@@ -237,6 +297,7 @@
 			targets = (
 				29F2120324402B9300805A6D /* CMIOMinimalSample */,
 				9761822625BEBF7E00A575B2 /* LuminaAssistance */,
+				9761824625BECC5C00A575B2 /* lumina-control */,
 			);
 		};
 /* End PBXProject section */
@@ -276,7 +337,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9761824325BECC5C00A575B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9761824A25BECC5C00A575B2 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9761825F25BEFC5A00A575B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9761822625BEBF7E00A575B2 /* LuminaAssistance */;
+			targetProxy = 9761825E25BEFC5A00A575B2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		29F2120824402B9300805A6D /* Debug */ = {
@@ -448,6 +525,32 @@
 			};
 			name = Release;
 		};
+		9761824C25BECC5C00A575B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M2GGXLNTN5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9761824D25BECC5C00A575B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M2GGXLNTN5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -474,6 +577,15 @@
 			buildConfigurations = (
 				9761822C25BEBF7E00A575B2 /* Debug */,
 				9761822D25BEBF7E00A575B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9761824B25BECC5C00A575B2 /* Build configuration list for PBXNativeTarget "lumina-control" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9761824C25BECC5C00A575B2 /* Debug */,
+				9761824D25BECC5C00A575B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

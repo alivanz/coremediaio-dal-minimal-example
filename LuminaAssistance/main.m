@@ -46,7 +46,7 @@ int main(int argc, const char * argv[]) {
         NSLog(@"resuming connection");
         [listener resume];
         NSLog(@"running loop");
-        CFRunLoopRun();
+        [[NSRunLoop currentRunLoop] run];
         return 0;
     }
     return 0;
