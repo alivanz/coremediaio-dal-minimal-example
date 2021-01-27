@@ -15,6 +15,7 @@
 #include <CoreImage/CoreImage.h>
 #include <CoreMediaIO/CMIOSampleBuffer.h>
 #include <Metal/Metal.h>
+#import "../LuminaAssistance/protocol.h"
 
 #import "Logging.h"
 
