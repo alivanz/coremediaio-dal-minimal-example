@@ -16,6 +16,7 @@
 #include <CoreMediaIO/CMIOSampleBuffer.h>
 #include <Metal/Metal.h>
 #import "../LuminaAssistance/protocol.h"
+#import "Assistance.h"
 
 #import "Logging.h"
 
@@ -26,6 +27,8 @@
     dispatch_source_t _frameDispatchSource;
     uint64_t _firstFrameDeliveryTime;
     CGImageRef image;
+    Assistance *assist;
+    CVPixelBufferRef pixelBuffer;
 //    AVCaptureSession *session;
 //    AVCaptureDevice *device;
 //    AVCaptureDeviceInput *deviceInput;
@@ -66,12 +69,9 @@
         });
     }
     image = [self loadImageFile:@"/Library/CoreMediaIO/Plug-Ins/DAL/CMIOMinimalSample.plugin/Contents/Resources/bg.jpg"];
-    // connect xpc
-    NSXPCConnection *conn = [[NSXPCConnection alloc] initWithServiceName:@"lumina"];
-    conn.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ImageProvider)];
-    [conn resume];
-    // try dial
-    [conn.remoteObjectProxy hello];
+    // assistance
+    assist = [[Assistance alloc] init];
+    [assist test];
 //    // setup permission
 //    DLogFunc(@"setup permission");
 //    NSParameterAssert([self setupPermission:AVMediaTypeVideo] == true);
@@ -243,7 +243,10 @@
         return;
     }
 
-    CVPixelBufferRef pixelBuffer = [self createPixelBufferWithTestAnimation];
+//    CVPixelBufferRef pixelBuffer = [self createPixelBufferWithTestAnimation];
+    [assist getPixelBuffer:^(CVPixelBufferRef buffer){
+        self->pixelBuffer = buffer;
+    }];
 
     // The timing here is quite important. For frames to be delivered correctly and successfully be recorded by apps
     // like QuickTime Player, we need to be accurate in both our timestamps _and_ have a sensible scale. Using large

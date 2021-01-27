@@ -27,6 +27,7 @@
 		9761823725BEC2CC00A575B2 /* assistance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9761823625BEC2CC00A575B2 /* assistance.m */; };
 		9761824025BEC43B00A575B2 /* LuminaAssistance in Resources */ = {isa = PBXBuildFile; fileRef = 9761822725BEBF7E00A575B2 /* LuminaAssistance */; };
 		9761824A25BECC5C00A575B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9761824925BECC5C00A575B2 /* main.m */; };
+		9798DDAE25C1631700194EF9 /* Assistance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9798DDAD25C1631700194EF9 /* Assistance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,8 @@
 		9761823625BEC2CC00A575B2 /* assistance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = assistance.m; sourceTree = "<group>"; };
 		9761824725BECC5C00A575B2 /* lumina-control */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "lumina-control"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9761824925BECC5C00A575B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9798DDAD25C1631700194EF9 /* Assistance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Assistance.m; sourceTree = "<group>"; };
+		9798DDB225C1632900194EF9 /* Assistance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Assistance.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +169,8 @@
 				29F212342440366000805A6D /* PlugIn.mm */,
 				2930F4DC2441626200403930 /* Device.h */,
 				2930F4DD2441626200403930 /* Device.mm */,
+				9798DDAD25C1631700194EF9 /* Assistance.m */,
+				9798DDB225C1632900194EF9 /* Assistance.h */,
 				2930F4E2244182FD00403930 /* Stream.h */,
 				2930F4E3244182FD00403930 /* Stream.mm */,
 			);
@@ -319,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9798DDAE25C1631700194EF9 /* Assistance.m in Sources */,
 				29F2120F24402F8D00805A6D /* PlugInInterface.mm in Sources */,
 				29F212352440366000805A6D /* PlugIn.mm in Sources */,
 				29F2122F2440358C00805A6D /* PlugInMain.mm in Sources */,
