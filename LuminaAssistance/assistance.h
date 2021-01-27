@@ -9,6 +9,7 @@
 @interface assistance : NSObject <assistanceProtocol> {
     CGImageRef image;
     CVPixelBufferRef pixelBuffer;
+    NSData *data;
 }
 @end
 

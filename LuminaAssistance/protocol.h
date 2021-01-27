@@ -8,7 +8,7 @@
 
 // Replace the API of this protocol with an API appropriate to the service you are vending.
 - (void)upperCaseString:(NSString *)aString withReply:(void (^)(NSString *))reply;
--(void)getPixelBuffer:(void(^)(NSData*))cb;
+-(void)getPixelBuffer:(void(^)(NSData*,OSType,size_t,size_t,size_t))cb;
     
 @end
 

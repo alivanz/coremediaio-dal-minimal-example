@@ -8,7 +8,7 @@
 -(instancetype)init {
     self = [super init];
     image = [self loadImageFile:@"/Library/CoreMediaIO/Plug-Ins/DAL/CMIOMinimalSample.plugin/Contents/Resources/bg.jpg"];
-    pixelBuffer = [self getPxBuffer];
+    [self setPxBuffer:[self getPxBuffer]];
     return self;
 }
 -(void)dealloc {
@@ -46,6 +46,12 @@
 
     return pxbuffer;
 }
+-(void) setPxBuffer:(CVPixelBufferRef)pxbuffer {
+    pixelBuffer = pxbuffer;
+    CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+    data = [NSData dataWithBytes:CVPixelBufferGetBaseAddress(pixelBuffer) length:CVPixelBufferGetBytesPerRow(pixelBuffer)*CVPixelBufferGetHeight(pixelBuffer)];
+    CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+}
 
 - (CGImageRef) loadImageFile:(NSString*)filename {
   CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData((CFDataRef)[NSData dataWithContentsOfFile:filename]);
@@ -59,13 +65,14 @@
     NSString *response = [aString uppercaseString];
     reply(response);
 }
--(void)getPixelBuffer:(void(^)(NSData*))cb {
-    char data[4];
-    data[0] = 1;
-    data[1] = 4;
-    data[2] = 1;
-    data[3] = 2;
-    cb([NSData dataWithBytes:data length:4]);
+-(void)getPixelBuffer:(void(^)(NSData*,OSType,size_t,size_t,size_t))cb {
+    cb(
+       data,
+       CVPixelBufferGetPixelFormatType(pixelBuffer),
+       CVPixelBufferGetWidth(pixelBuffer),
+       CVPixelBufferGetHeight(pixelBuffer),
+       CVPixelBufferGetBytesPerRow(pixelBuffer)
+    );
 }
 
 @end

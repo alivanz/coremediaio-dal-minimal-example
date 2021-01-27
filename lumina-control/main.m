@@ -26,11 +26,9 @@ int main(int argc, const char * argv[]) {
         [conn.remoteObjectProxy upperCaseString:@"hello" withReply:^(NSString *result){
             NSLog(@"result %@", result);
         }];
-        [conn.remoteObjectProxy getPixelBuffer:^(NSData *buffer){
-            for (NSUInteger i=0; i<buffer.length; i++) {
-                const char *data = buffer.bytes;
-                NSLog(@"data %i", data[i]);
-            }
+        [conn.remoteObjectProxy getPixelBuffer:^(NSData *buffer, OSType type, size_t w, size_t h, size_t stride){
+            NSLog(@"buffer length %lu", buffer.length);
+            NSLog(@"%lux%lu", w, h);
         }];
         [NSThread sleepForTimeInterval:0.5f];
     }
