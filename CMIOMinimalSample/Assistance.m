@@ -58,7 +58,7 @@ static NSString *serviceName = @"com.luminacam.LuminaAssistance";
         dispatch_semaphore_signal(wsem);
     }];
     DLogFunc(@"XPC wait");
-    dispatch_semaphore_wait(sem, 0);
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 }
 
 @end
